@@ -1,0 +1,94 @@
+### **Docker Compose Files for Home Assistant Setup**
+
+These Docker Compose files simplify deployment for Home Assistant, Zigbee2MQTT, Nginx Proxy Manager, and other essential services.
+
+---
+
+## **📂 Recommended Directory Structure**
+```
+/home-assistant-cloudflare-setup
+│── README.md  # Project Overview
+│── docker-compose-files
+│   │── homeassistant-docker-compose.yml  # Home Assistant & Zigbee2MQTT
+│   │── nginx-proxy-manager-docker-compose.yml  # Nginx Proxy Manager
+│   │── cloudflared-docker-compose.yml  # Cloudflare Tunnel
+│── config-files
+│   │── configuration.yaml  # Home Assistant Configuration
+│   │── cloudflared-config.yml  # Cloudflare Tunnel Settings
+│── LICENSE  # Open-source license (optional)
+```
+
+---
+
+## **1️⃣ homeassistant-docker-compose.yml (Home Assistant & Zigbee2MQTT)**
+```yaml
+version: '3.8'
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: homeassistant/home-assistant:latest
+    restart: always
+    network_mode: host
+    volumes:
+      - ./config:/config
+    environment:
+      - TZ=America/Chicago
+    privileged: true
+
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./zigbee2mqtt:/app/data
+    environment:
+      - TZ=America/Chicago
+```
+
+---
+
+## **2️⃣ nginx-proxy-manager-docker-compose.yml (Nginx Proxy Manager)**
+```yaml
+version: '3.8'
+services:
+  npm:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    volumes:
+      - npm_data:/data
+      - npm_letsencrypt:/etc/letsencrypt
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+volumes:
+  npm_data:
+  npm_letsencrypt:
+```
+
+---
+
+## **3️⃣ cloudflared-docker-compose.yml (Cloudflare Tunnel)**
+```yaml
+version: '3.8'
+services:
+  cloudflared:
+    container_name: cloudflared
+    image: cloudflare/cloudflared:latest
+    restart: always
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=YOUR_CLOUDFLARE_TUNNEL_TOKEN
+    networks:
+      - default
+```
+
+
+
