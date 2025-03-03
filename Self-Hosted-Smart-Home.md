@@ -6,14 +6,14 @@ This project demonstrates how to set up a **secure, self-hosted smart home envir
 
 ### **Key Features**
 
-✅ Secure **Home Assistant** deployment in Docker\
-✅ **Zigbee2MQTT** for managing smart devices\
-✅ **Node-RED** for automation workflows\
-✅ **Portainer** for managing Docker containers\
-✅ **File Browser** for remote file management\
-✅ **Web Console (Cockpit)** for system monitoring\
-✅ **Cloudflare Tunnel & Zero Trust** for **secure remote access**\
-✅ **Nginx Proxy Manager** for domain and SSL management
+Secure **Home Assistant** deployment in Docker\
+**Zigbee2MQTT** for managing smart devices\
+**Node-RED** for automation workflows\
+**Portainer** for managing Docker containers\
+**File Browser** for remote file management\
+**Web Console (Cockpit)** for system monitoring\
+**Cloudflare Tunnel & Zero Trust** for **secure remote access**\
+**Nginx Proxy Manager** for domain and SSL management
 
 ---
 
