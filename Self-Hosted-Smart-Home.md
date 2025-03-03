@@ -118,15 +118,5 @@ add_header Content-Security-Policy "frame-ancestors 'self' https://ha.example.co
 
 ✅ **Solution:** Assign a **static IP** to the Ubuntu server and configure the router to **reserve the IP**.
 
----
-
-## **Lessons Learned**
-
-💡 **Cloudflare Zero Trust eliminates the need for open ports.**\
-💡 **Docker allows for easy service management & backups.**\
-💡 **Proper DNS, SSL, and Proxy settings prevent access issues.**\
-💡 **Using Nginx Proxy Manager simplifies domain handling.**
-
----
 
 
